@@ -13,7 +13,10 @@ export class MantisApp extends PolymerElement {
           display: block;
         }
       </style>
+      <slot name="header"></slot>
       <h2>Hello [[prop1]] it is me [[giorgio]]!</h2>
+      <slot></slot>
+      <slot name="footer"></slot>
     `;
   }
 
@@ -21,12 +24,11 @@ export class MantisApp extends PolymerElement {
     return {
       prop1: {
         type: String,
-        //value: 'mantis-app',
         reflectToAttribute: true // Makes the attribute change with the property when changed
       },
       giorgio: {
         type: String,
-        value: 'Giovanni Giorgio',
+        value: 'Name',
         notify: true, // Creates an event called giorgio-changed
         readOnly: true // It protecc
       },
