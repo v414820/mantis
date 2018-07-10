@@ -21,12 +21,18 @@ export class MantisApp extends PolymerElement {
     return {
       prop1: {
         type: String,
-        value: 'mantis-app',
-        reflectToAttribute: true
+        //value: 'mantis-app',
+        reflectToAttribute: true // Makes the attribute change with the property when changed
       },
       giorgio: {
         type: String,
-        value: 'Giovanni Giorgio'
+        value: 'Giovanni Giorgio',
+        notify: true, // Creates an event called giorgio-changed
+        readOnly: true // It protecc
+      },
+      hidalgo: {
+        type: Object,
+        value: function() { return {}; }
       }
     };
   }
@@ -63,3 +69,8 @@ export class MantisApp extends PolymerElement {
 }
 
 window.customElements.define('mantis-app', MantisApp);
+
+
+
+// HUGE difference between simple concepts: properties as JS Object children, 
+// FALTA COMPUTED Y OBSERVER!
