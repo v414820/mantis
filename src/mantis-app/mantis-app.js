@@ -7,7 +7,7 @@ export class XTarget extends PolymerElement {
   static get template() {
     return html`
       <h2>[[targetTitle]]</h2>
-      <p>Target: {{targetValue}}</p>
+      <p>Target: [[targetValue]]</p>
       <input value="{{targetValue::change}}" placeholder="Make your move">
     `;
   }
@@ -64,9 +64,13 @@ customElements.define('x-target', XTarget);
 class XHost extends PolymerElement {
   static get template() {
     return html`
+      <slot name="header"></slot>
       <h1>[[hostTitle]]</h1>
       <x-target target-value="{{hostValue}}" target-title="Another one bites de_dust2"></x-target>
       <p>Host: {{hostValue}}</p>
+      <div style="color: {{myColor}};">
+        Hey man
+      </div>
     `;
   }
 
@@ -78,6 +82,14 @@ class XHost extends PolymerElement {
       },
       hostTitle: {
         type: String
+      },
+      zeldawave: {
+        type: String,
+        value: "https://www.google.com"
+      },
+      myColor: {
+        type: String,
+        value: '#AFC'
       }
     }
   }
