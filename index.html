@@ -11,13 +11,17 @@
         <!--<script type="module" src="/src/mantis-app/mini-mantis-app.js"></script>-->
     
         <style>
-            mantis-app[unresolved] {
+            html {
+                --custom-theme : red;
+            }
+
+            x-host[unresolved] {
                 background-color: rgba(0, 0, 0, 0.678);
             }
         </style>
     </head>
     <body>
-        <x-host host-title= "Goofy Stuff"> <!--Binding to text content is always one-way, host-to-target.-->
+        <x-host unresolved host-title= "Goofy Stuff" class="gray"> <!--Binding to text content is always one-way, host-to-target.-->
             <p slot="header">Somebody told me...is the beggining!</p>
             <p>I am nothing but a paragraph in the middle of nowhere</p>
         </x-host>
