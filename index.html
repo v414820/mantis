@@ -1,34 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>mantis</title>
-    <meta name="description" content="mantis description">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+        <title>mantis</title>
+        <meta name="description" content="mantis description">
 
-    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="/src/mantis-app/mantis-app.js"></script>
-    <!--<script type="module" src="/src/mantis-app/mini-mantis-app.js"></script>-->
-   
-
-    <style>
-        mantis-app[unresolved] {
-            background-color: rgba(0, 0, 0, 0.678);
-        }
-    </style>
-
-  </head>
-  <body>
-
-    <h1>This is the beggining...</h1>
-    <mantis-app unresolved prop1="Magiax">
-        <p slot="header">Somebody told me...is the beggining!</p>
-
-        <p>I am nothing but a paragraph in the middle of nowhere</p>
-        <p slot="footer">Somebody told me...is the end</p>
-    </mantis-app>
-    <!--<mini-mantis-app prop1="Magia es esta"></mini-mantis-app>-->
-
+        <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+        <script type="module" src="/src/mantis-app/mantis-app.js"></script>
+        <!--<script type="module" src="/src/mantis-app/mini-mantis-app.js"></script>-->
     
-</body>
+        <style>
+            mantis-app[unresolved] {
+                background-color: rgba(0, 0, 0, 0.678);
+            }
+        </style>
+    </head>
+    <body>
+        <x-host host-title= "Goofy Stuff"></x-host>
+        <x-custom></x-custom>
+        <!--<mantis-app unresolved mac="Real">
+            <p slot="header">Somebody told me...is the beggining!</p>
+            <p>I am nothing but a paragraph in the middle of nowhere</p>
+        </mantis-app>-->
+        <!--<mini-mantis-app prop1="Magia es esta"></mini-mantis-app>-->
+    </body>
 </html>

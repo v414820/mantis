@@ -1,55 +1,48 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 
-/**
- * @customElement
- * @polymer
- */
-export class MantisApp extends PolymerElement {
+//////////////////////////////////////////////////////////////////////
+// Best example of data flow I could've come with:
+
+export class XTarget extends PolymerElement {
   static get template() {
     return html`
-      <style>
-        :host {
-          display: block;
-        }
-      </style>
-      <slot name="header"></slot>
-      <h2>Hello [[prop1]] it is me [[giorgio]]!</h2>
-      <slot></slot>
-      <slot name="footer"></slot>
+      <h2>[[targetTitle]]</h2>
+      <p>Target: {{targetValue}}</p>
+      <input value="{{targetValue::change}}" placeholder="Make your move">
     `;
   }
 
   static get properties() {
     return {
-      prop1: {
+      targetValue: {
         type: String,
-        reflectToAttribute: true // Makes the attribute change with the property when changed
+        notify: true, // Toggle to see the magic in action
+        observer: '_changedTarget'
       },
-      giorgio: {
-        type: String,
-        value: 'Name',
-        notify: true, // Creates an event called giorgio-changed
-        readOnly: true // It protecc
-      },
-      hidalgo: {
-        type: Object,
-        value: function() { return {}; }
+      targetTitle: {
+        type: String
       }
-    };
+    }
   }
 
-  constructor(){
-    super();
-    console.log('Constructor');
+  _changedTarget(){
+    //console.log('Changing minds...');
+    //this.targetValue = 'Changed my mind';
+  }
+
+  static get observers(){
+    return [
+      '_complexObserver(targetValue)'
+    ];
+  }
+
+  _complexObserver(targetValue,targetTitle){
+    console.log(`Something's up...`,targetTitle,targetValue);
   }
 
   ready(){
     super.ready();
     console.log('Ready');
-    afterNextRender(this, function() {
-      this.removeAttribute('unresolved');
-    });
   }
 
   connectedCallback(){
@@ -61,18 +54,33 @@ export class MantisApp extends PolymerElement {
     super.disconnectedCallback();
     console.log('disconnectedCallback');
   }
-
-  attributeChangedCallback(name,old,value){
-    super.attributeChangedCallback();
-    console.log('attributeChangedCallback',name,old,value);
-    //this[name] = value;
-  }
-
 }
 
-window.customElements.define('mantis-app', MantisApp);
 
+customElements.define('x-target', XTarget);
 
+//-----------------------------------------
 
-// HUGE difference between simple concepts: properties as JS Object children, 
-// FALTA COMPUTED Y OBSERVER!
+class XHost extends PolymerElement {
+  static get template() {
+    return html`
+      <h1>[[hostTitle]]</h1>
+      <x-target target-value="{{hostValue}}" target-title="Another one bites de_dust2"></x-target>
+      <p>Host: {{hostValue}}</p>
+    `;
+  }
+
+  static get properties(){
+    return {
+      hostValue: {
+        type: String,
+        value: 'Transmitter'
+      },
+      hostTitle: {
+        type: String
+      }
+    }
+  }
+}
+
+customElements.define('x-host', XHost);
